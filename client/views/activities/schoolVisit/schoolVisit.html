@@ -1,0 +1,25 @@
+<template name="schoolVisit">
+	<div class="container home-container">
+		<div>
+			{{> backtohome activityclass="btn-schoolvisit"}}
+			<br>
+			<fieldset>
+				<legend><i class="fa fa-university fa-2x schoolvisit-icon"></i> School Visit </legend>
+				{{#autoForm collection="Schoolvisits" id="insertSchoolvisit" type="method" meteormethod="submitSchoolvisit"}}
+					{{> afQuickField name="school"}}
+					{{> afQuickField name="principal"}}
+					{{> afQuickField name="coordinator"}}
+					<div class="text-center">
+						<button type="submit" class="btn btn-schoolvisit">Submit</button>
+						<button type="reset" class="btn btn-default">Reset</button>
+					</div>
+				{{/autoForm}}
+				
+			</fieldset>
+			<hr>
+			<br>
+			<br>
+		</div>
+	</div>
+	{{> footer}}
+</template>

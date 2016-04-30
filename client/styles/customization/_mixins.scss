@@ -1,0 +1,71 @@
+@mixin backtohome($bg-color) {
+	
+	background-color: $bg-color;
+	color: lighten($bg-color,100%);
+	border-color: darken($bg-color, 6.5%); 
+	// border: 2px solid darken($color,6.5%);
+	
+	&:focus{
+		color: lighten($bg-color,100%);
+		background-color: darken($bg-color,4%);
+		border-color: darken($bg-color, 10%);
+	}
+
+	&:hover{
+		color: lighten($bg-color,100%);
+		background-color: darken($bg-color,2%);
+		border-color: darken($bg-color, 4%);
+	}
+	&:active, .open > .dropdown-toggle{
+		color: lighten($bg-color,100%);
+		background-color: darken($bg-color,6.5%);
+		border-color: darken($bg-color, 12%);
+		background-image: none;
+		&:hover,
+		&:focus {
+			color: lighten($bg-color,100%);
+      		background-color: darken($bg-color, 8%);
+          	border-color: darken($bg-color, 12%);
+		}
+	}
+
+	&[disabled],
+	fieldset[disabled] {
+		&:hover,
+		&:focus,
+		&:active{
+			background-color: $bg-color;
+			border-color: darken($bg-color, 6.5%);
+		}
+	}
+
+	.badge {
+		color: $bg-color;
+		background-color: lighten($bg-color,100%);
+	}
+	
+}
+
+
+@mixin panel-variant($border, $heading-text-color, $heading-bg-color, $heading-border) {
+  border-color: $border;
+
+  	.panel-heading {
+    	color: $heading-text-color;
+    	background-color: $heading-bg-color;
+    	border-color: $heading-border;
+
+	    + .panel-collapse > .panel-body {
+	      border-top-color: $border;
+	    }
+	    .badge {
+	      color: $heading-bg-color;
+	      background-color: $heading-text-color;
+	    }
+  	}
+    .panel-footer {
+	    + .panel-collapse > .panel-body {
+	      border-bottom-color: $border;
+	    }
+  	}
+}

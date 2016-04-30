@@ -1,0 +1,446 @@
+<template name="dashboard">
+	<div class="container-fluid">
+
+		<h4 class='text-center'>Select Date</h4>
+	    <div class="form-group">
+	        <div class="row">
+	            <div>
+	            	<br>
+	            	<div id="datetimepicker12"></div>
+	            	<br>
+	            </div>
+	        </div>
+	        {{> homebutton}}
+	    </div>
+	</div>
+	{{> footer}}
+</template>
+
+<template name="homebutton">
+	<div class="text-center">
+    	<a href="{{pathFor route="home"}}"><button class="btn btn-primary"><i class="fa fa-home fa-2x"></i></button></a>
+    </div>
+</template>
+
+
+<template name="activities">
+	<div class="container-fluid">
+		<a href="{{pathFor route='dashboard'}}">
+			<br><div class="text-center show-calendar"><i class="fa fa-calendar"></i> Calendar</div><hr></a>
+		{{#if counting Insertion.count Leaflet.count Point.count Schoolvisit.count Seminar.count Tutionclass.count}}
+			<h5 class="text-center"><i class="fa fa-gg"></i> No Activities found for {{this}} <i class="fa fa-gg"></i></h5>
+			<br>
+			{{> homebutton}}
+		{{else}}
+			<h5 class="text-center"><i class="fa fa-gg"></i> Activities for {{this}} <i class="fa fa-gg"></i></h5>
+			<br>
+			{{> homebutton}}
+			<br>
+			{{#if Insertion.count}}
+				<div class="col-xs-12 col-sm-6">
+					<div class="insertion-color border">
+						<h4 class="text-center"><i class="fa fa-ticket"></i> Insertions</h4>
+						<table class="table table-condensed table-responsive">
+							<thead>
+								<tr>
+									<th>Insertions</th>
+									<th>Location</th>
+									{{#if equal this currentDate}}
+									<th></th>
+									{{/if}}	
+								</tr>
+							</thead>
+							<tbody>
+							{{#each Insertion}}
+								<tr>
+									<td>{{numberOfInsertions}}</td>
+									<td>{{location}}</td>
+									{{#if equal (..this) currentDate}}
+										<td><a href="" class="deleteInsertion"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
+									{{/if}}	
+								</tr>
+							{{/each}}
+							</tbody>
+						</table>
+					</div>	
+				</div>
+			{{/if}}
+
+			{{#if Leaflet.count}}
+				<div class="col-xs-12 col-sm-6">
+					<div class="leaflet-color border">
+						<h4 class="text-center"><i class="fa fa-leaf"></i> Leaflets</h4>
+						<table class="table table-condensed table-responsive">
+							<thead>
+								<tr>
+									<th>Numbers</th>
+									<th>Location</th>
+									{{#if equal this currentDate}}
+									<th></th>
+									{{/if}}	
+								</tr>
+							</thead>
+							<tbody>
+							{{#each Leaflet}}
+								<tr>
+									<td>{{numberOfLeaflets}}</td>
+									<td>{{location}}</td>
+									{{#if equal (..this) currentDate}}
+										<td><a href="" class="deleteLeaflet"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
+									{{/if}}	
+								</tr>
+							{{/each}}
+							</tbody>
+						</table>
+					</div>	
+				</div>
+			{{/if}}
+		
+			{{#if Point.count}}
+				<div class="col-xs-12 col-sm-6 ">
+					<div class="pointsale-color border">
+						<h4 class="text-center"><i class="fa fa-street-view"></i> Point of Sale</h4>
+						<table class="table table-condensed table-responsive">
+							<thead>
+								<tr>
+									<th>Full Name</th>
+									<th>Form Quantity</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+							{{#each Point}}
+								<tr>
+									<td>{{name}}</td>
+									<td>{{form.formquantity}}</td>
+									{{#if equal (..this) currentDate}}
+										<td><a href="{{pathFor route='pointactivity' _id=this._id }}" class="showPoint"><i class="glyphicon glyphicon-list"></i> Show</a> | <a href="" class="deletePoint"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
+									{{else}}
+										<td><a href="{{pathFor route='pointactivity' _id=this._id }}"><i class="glyphicon glyphicon-list"></i> Show</a></td>
+									{{/if}}
+								</tr>
+							{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>	
+			{{/if}}
+			{{#if Schoolvisit.count}}	
+				<div class="col-xs-12 col-sm-6">
+					<div class="border schoolvisit-color">
+						<h4 class="text-center"><i class="fa fa-university"></i> School Visit</h4>
+						<table class="table table-condensed table-responsive">
+							<thead>
+								<tr>
+									<th>School Name</th>
+									<th>Contact #</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+							{{#each Schoolvisit}}
+								<tr>
+									<td>{{school.name}}</td>
+									<td>{{school.contactno}}</td>
+									{{#if equal (..this) currentDate}}
+										<td><a href="{{pathFor route='schoolvisitactivity' _id=this._id }}" class="showSchoolvisit"><i class="glyphicon glyphicon-list"></i> Show</a> | <a href="" class="deleteSchoolvisit"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
+									{{else}}
+										<td><a href="{{pathFor route='schoolvisitactivity' _id=this._id }}"><i class="glyphicon glyphicon-list"></i> Show</a></td>
+									{{/if}}
+								</tr>
+							{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>	
+			{{/if}}
+			{{#if Seminar.count}}
+				<div class="col-xs-12 col-sm-6">
+					<div class="border seminar-color">
+						<h4 class="text-center"><i class="fa fa-child"></i> Seminar</h4>
+						<table class="table table-condensed table-responsive">
+							<thead>
+								<tr>
+									<th>Attendees</th>
+									<th>Enquiries</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+							{{#each Seminar}}
+								<tr>
+									<td>{{seminarinfo.attendees}}</td>
+									<td>{{seminarinfo.enquiries}}</td>
+									{{#if equal (..this) currentDate}}
+										<td><a href="{{pathFor route='seminaractivity' _id=this._id }}" class="showSeminar"><i class="glyphicon glyphicon-list"></i> Show</a> | <a href="" class="deleteSeminar"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
+									{{else}}
+										<td><a href="{{pathFor route='seminaractivity' _id=this._id }}"><i class="glyphicon glyphicon-list"></i> Show</a></td>
+									{{/if}}
+								</tr>
+							{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>	
+			{{/if}}
+			{{#if Tutionclass.count}}	
+				<div class="col-xs-12 col-sm-6">
+					<div class="border tutionclass-color">
+						<h4 class="text-center"><i class="fa fa-thumb-tack"></i> Tution Class</h4>
+						<table class="table table-condensed table-responsive">
+							<thead>
+								<tr>
+									<th>Institute Name</th>
+									<th>Contact #</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+							{{#each Tutionclass}}
+								<tr>
+									<td>{{institute.name}}</td>
+									<td>{{institute.contactno}}</td>
+									{{#if equal (..this) currentDate}}
+									<td><a href="{{pathFor route='tutionactivity' _id=this._id }}" class="showTutionclass"><i class="glyphicon glyphicon-list"></i> Show</a> | <a href="" class="deleteTutionclass"><i class="glyphicon glyphicon-trash"></i> Delete</a></td>
+									{{else}}
+									<td><a href="{{pathFor route='tutionactivity' _id=this._id }}"><i class="glyphicon glyphicon-list"></i> Show</a></td>
+									{{/if}}
+								</tr>
+							{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>	
+			{{/if}}
+		{{/if}}	
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	{{> footer}}
+</template>
+
+<template name="pointactivity">
+	<div class="container">
+		<h3 class="text-center"><i class="fa fa-street-view fa-2x pointsale-icon"></i> Point of Sale 
+				<button class="btn btn-pointsale pull-right backtoactivity">Back</button>
+		</h3>
+		<hr>
+		<div class="col-xs-12 col-sm-4">
+			<div class="panel pointsale-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Owner Information</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>Full Name</b> : {{name}}</li>
+				    <li class="list-group-item"> <b>Address</b> :
+				    	<ul>
+				    		<li>{{address.addressline1}}</li>
+				    		<li>{{address.addressline2}}</li>
+				    		<li>{{address.city}}</li>
+				    		<li>{{address.state}}</li>
+				    		<li>{{address.postalcode}}</li>
+				    	</ul>
+				    </li>
+			  	</ul>
+			</div>
+		</div>
+		{{#if org}}
+		<div class="col-xs-12 col-sm-4">
+			<div class="panel pointsale-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Organization Details</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>Name</b> : {{org.orgname}}</li>
+				    <li class="list-group-item"> <b>Contact #</b> : {{org.contactno}}</li>
+				    <li class="list-group-item"> <b>Email</b> : {{org.contactemail}}</li>
+				    <li class="list-group-item"> <b>City/Town</b> : {{org.location}}</li>
+			  	</ul>
+			</div>
+		</div>
+		{{/if}}
+		<div class="col-xs-12 col-sm-4">
+			<div class="panel pointsale-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Owner Information</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>Forms</b> : {{form.formsgiven}}</li>
+				    <li class="list-group-item"> <b>Quantity</b> : {{form.formquantity}}</li>
+			  	</ul>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	{{> footer}}
+</template>
+
+<template name="schoolvisitactivity">
+	<div class="container">
+		<h3 class="text-center"><i class="fa fa-university fa-2x schoolvisit-icon"></i> School Visit 
+				<button class="btn btn-schoolvisit pull-right backtoactivity">Back</button>
+		</h3>
+		<hr>
+		<div class="col-xs-12 col-sm-4">
+			<div class="panel schoolvisit-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">School Information</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>School Name</b> : {{school.name}}</li>
+				    <li class="list-group-item"> <b>Address</b> :
+				    	<ul>
+				    		<li>{{school.address.addressline1}}</li>
+				    		<li>{{school.address.addressline2}}</li>
+				    		<li>{{school.address.city}}</li>
+				    		<li>{{school.address.state}}</li>
+				    		<li>{{school.address.postalcode}}</li>
+				    	</ul>
+				    </li>
+				    <li class="list-group-item"><b>Email</b> :{{school.email}}</li>
+				    <li class="list-group-item"><b>Contact #</b> :{{school.contactno}}</li>
+				    <li class="list-group-item"><b>Enrolled in STaRT</b> :{{school.enrolledstart}}</li>
+			  	</ul>
+			</div>
+		</div>
+		
+		<div class="col-xs-12 col-sm-4">
+			<div class="panel schoolvisit-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Principal Details</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>Name</b> : {{principal.name}}</li>
+				    <li class="list-group-item"> <b>Contact #</b> : {{principal.contactno}}</li>
+				    <li class="list-group-item"> <b>Email</b> : {{principal.email}}</li>
+			  	</ul>
+			</div>
+		</div>
+		
+		<div class="col-xs-12 col-sm-4">
+			<div class="panel schoolvisit-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Coordinator Information</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>Name</b> : {{coordinator.name}}</li>
+				    <li class="list-group-item"> <b>Contact #</b> : {{coordinator.contactno}}</li>
+				    <li class="list-group-item"> <b>Email</b> : {{coordinator.email}}</li>
+			  	</ul>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	{{> footer}}
+</template>
+
+<template name="seminaractivity">
+	<div class="container">
+		<h3 class="text-center"><i class="fa fa-child fa-2x seminar-icon"></i> Seminar 
+				<button class="btn btn-seminar pull-right backtoactivity">Back</button>
+		</h3>
+		<hr>
+		<div class="col-xs-12 col-sm-6">
+			<div class="panel seminar-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Seminar Information</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>Topic</b> : {{seminartopic}}</li>
+				    <li class="list-group-item"> <b>Presenter</b> : {{seminarpresentor}}</li>
+				    <li class="list-group-item"> <b>Venue</b> :
+				    	<ul>
+				    		<li>{{seminaraddress.addressline1}}</li>
+				    		<li>{{seminaraddress.addressline2}}</li>
+				    		<li>{{seminaraddress.city}}</li>
+				    		<li>{{seminaraddress.state}}</li>
+				    		<li>{{seminaraddress.postalcode}}</li>
+				    	</ul>
+				    </li>
+				    <li class="list-group-item"><b>Contact #</b> :{{seminarcontactno}}</li>
+			  	</ul>
+			</div>
+		</div>
+		
+		<div class="col-xs-12 col-sm-6">
+			<div class="panel seminar-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Attendees Information</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>No. of Attendees</b> : {{seminarinfo.attendees}}</li>
+
+				    <li class="list-group-item"> <b>Student Data Collected</b> : {{seminarinfo.studentDataCollection}}</li>
+				    <li class="list-group-item"> <b>No. of Enquiries</b> : {{seminarinfo.enquiries}}</li>
+				    <li class="list-group-item"> <b>No. of Forms Sold</b> : {{seminarinfo.formsold}}</li>
+			  	</ul>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	{{> footer}}
+</template>
+
+<template name="tutionactivity">
+	<div class="container">
+		<h3 class="text-center"><i class="fa fa-thumb-tack fa-2x tutionclass-icon"></i> Tution Classes 
+				<button class="btn btn-tutionclass pull-right backtoactivity">Back</button>
+		</h3>
+		<hr>
+		<div class="col-xs-12 {{#if ownerinfo}}col-sm-4{{else}}col-sm-6{{/if}}">
+			<div class="panel tutionclass-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Institute Information</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>Name</b> : {{institute.name}}</li>
+				    <li class="list-group-item"> <b>Stream</b> : {{institute.stream}}</li>
+				    <li class="list-group-item"> <b>Classes</b> : {{institute.classes}}</li>
+				    <li class="list-group-item"> <b>Email</b> : {{institute.email}}</li>
+				    <li class="list-group-item"><b>Contact #</b> :{{institute.contactno}}</li>
+				    <li class="list-group-item"> <b>City</b> : {{institute.city}}</li>
+			  	</ul>
+			</div>
+		</div>
+		{{#if ownerinfo}}
+		<div class="col-xs-12 {{#if ownerinfo}}col-sm-4{{else}}col-sm-6{{/if}}">
+			<div class="panel tutionclass-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Owner Information</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>Name</b> : {{ownerinfo.name}}</li>
+					<li class="list-group-item"> <b>Email</b> : {{ownerinfo.owneremail}}</li>
+			  	</ul>
+			</div>
+		</div>
+		{{/if}}
+		<div class="col-xs-12 {{#if ownerinfo}}col-sm-4{{else}}col-sm-6{{/if}}">
+			<div class="panel tutionclass-panel">
+				<div class="panel-heading">
+					<h3 class="panel-title">Contact Information</h3>
+				</div>
+				<ul class="list-group">
+				    <li class="list-group-item"> <b>Name</b> : {{contactperson.name}}</li>
+
+				    <li class="list-group-item"> <b>Email</b> : {{contactperson.email}}</li>
+				    <li class="list-group-item"> <b>Contact #</b> : {{contactperson.contactno}}</li>
+			  	</ul>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	{{> footer}}
+	
+</template>
+

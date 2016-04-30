@@ -1,0 +1,62 @@
+<template name="navigationbar">
+	<nav class="navbar navbar-default navigation">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	    	{{#if ResoUser}}
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		    <!-- {{else}}
+		    	{{> signin}}  -->
+	      	{{/if}}
+	      <a class="navbar-brand" href="{{pathFor route='home'}}" tabindex=-1 >Breather</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    
+	    {{#if Storageuser}}
+	    	{{#if ResoUser}}
+	    		{{#if equal ResoUser._id Storageuser}}
+			    	<div class="navbar-collapse bs-example-js-navbar-collapse collapse" aria-expanded="false">
+				      <ul class="nav navbar-nav navbar-right margin-top">
+				      	<li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Hi {{titlecase ResoUser.firstname}} <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				          	{{#if equal ResoUser.role 'admin'}}
+				          	<li class="divider"></li>
+				          	<li><a href="{{pathFor route='admin'}}" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse">Admin</a></li>
+				          	{{/if}}
+				          	<li class="divider"></li>
+				          	<li><a href="{{pathFor route='dashboard'}}" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse">Dashboard</a></li>
+				          	<li class="divider"></li>
+				            <li><a href="#" class="signout">Signout</a></li>
+				          </ul>
+				        </li>
+				      </ul>
+				    </div><!--/.navbar-collapse -->
+				{{else}}
+					{{> invaliduser}}
+				{{/if}}
+			{{else}}
+				{{> signin}}	
+			{{/if}}
+		{{/if}}
+	  </div><!-- /.container-fluid -->
+	</nav>
+</template>
+
+<template name="invaliduser">
+	
+</template>
+
+<template name="signin">
+	<div class="navbar-collapse bs-example-js-navbar-collapse collapse" aria-expanded="false">
+      <ul class="nav navbar-nav navbar-right">
+      	<li><a href="">Sign In</a></li>
+      </ul>
+    </div>
+</template>

@@ -1,0 +1,13 @@
+<template name="home">
+	<div class="container home-container">
+		<div class="row">
+			<a href="{{pathFor route='insertion'}}" class="insertion-color activity col-xs-6 col-sm-4 col-md-4 text-center"><i class="fa fa-ticket fa-5x"></i><div class="text-center">Insertion</div></a>
+			<a href="{{pathFor route='leaflet'}}" class="leaflet-color activity col-xs-6 col-sm-4 col-md-4 text-center"><i class="fa fa-leaf fa-5x"></i><div class="text-center">Leaflet</div></a>
+			<a href="{{pathFor route='pointOfSale'}}" class="pointsale-color activity col-xs-6 col-sm-4 col-md-4 text-center"><i class="fa fa-street-view fa-5x"></i><div class="text-center">Point of Sale</div></a>
+			<a href="{{pathFor route='schoolVisit'}}" class="schoolvisit-color activity col-xs-6 col-sm-4 col-md-4 text-center"><i class="fa fa-university fa-5x"></i><div class="text-center">School Visit</div></a>
+			<a href="{{pathFor route='seminar'}}" class="seminar-color activity col-xs-6 col-sm-4 col-md-4 text-center"><i class="fa fa-child fa-5x"></i><div class="text-center">Seminar</div></a>
+			<a href="{{pathFor route='tutionClass'}}" class="tutionclass-color activity col-xs-6 col-sm-4 col-md-4 text-center"><i class="fa fa-thumb-tack fa-5x"></i><div class="text-center">Tution Class</div></a>
+		</div>
+	</div>
+	{{> footer}}
+</template>

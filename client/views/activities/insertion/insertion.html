@@ -1,0 +1,24 @@
+<template name="insertion">
+	<div class="container home-container">
+		<div>
+			{{> backtohome activityclass="btn-insertion"}}
+			<br>
+			<fieldset>
+				<legend><i class="fa fa-ticket fa-2x insertion-icon"></i> Insertions </legend>
+				{{#autoForm collection="Insertions" id="insertInsertion" type="method" meteormethod="submitInsertion"}}
+					{{> afQuickField name="typeofInsertions"}}
+					{{> afQuickField name="numberOfInsertions"}}
+					{{> afQuickField name="location"}}
+					<div class="text-center">
+						<button type="submit" class="btn btn-insertion">Submit</button>
+						<button type="reset" class="btn btn-default">Reset</button>
+					</div>
+				{{/autoForm}}	
+			</fieldset>
+			<hr>
+			<br>
+			<br>
+		</div>
+	</div>
+	{{> footer}}
+</template>

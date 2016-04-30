@@ -1,0 +1,24 @@
+<template name="tutionClass">
+	<div class="container home-container">
+		<div>
+			{{> backtohome activityclass="btn-tutionclass"}}
+			<br>
+			<fieldset>
+				<legend><i class="fa fa-thumb-tack fa-2x tutionclass-icon"></i> Tution Classes </legend>
+				{{#autoForm collection="Tutionclasses" id="insertTutionclasses" type="method" meteormethod="submitTutionclass"}}
+					{{> afQuickField name="institute"}}
+					{{> afQuickField name="ownerinfo"}}
+					{{> afQuickField name="contactperson"}}
+					<div class="text-center">
+						<button type="submit" class="btn btn-tutionclass">Submit</button>
+						<button type="reset" class="btn btn-default">Reset</button>
+					</div>
+				{{/autoForm}}	
+			</fieldset>
+			<hr>
+			<br>
+			<br>
+		</div>
+	</div>
+	{{> footer}}
+</template>

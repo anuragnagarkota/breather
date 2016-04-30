@@ -1,0 +1,23 @@
+{
+  "name": "Breather",
+  "version": "0.0.0",
+  "description": "Breather - App for Resonance",
+  "keywords": [
+    "Breather"
+  ],
+  "authors": [
+    "nagarajay"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    ".meteor/local/bower/package/bowerInstall",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "compass-breakpoint": "breakpoint-sass#~2.6.1"
+  }
+}

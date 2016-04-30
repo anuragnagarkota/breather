@@ -1,0 +1,26 @@
+<template name="seminar">
+	<div class="container home-container">
+		<div>
+			{{> backtohome activityclass="btn-seminar"}}
+			<br>
+			<fieldset>
+				<legend><i class="fa fa-child fa-2x seminar-icon"></i> Seminars </legend>
+				{{#autoForm collection="Seminars" id="insertSeminar" type="method" meteormethod="submitSeminar"}}
+					{{> afQuickField name="seminartopic"}}
+					{{> afQuickField name="seminarpresentor"}}
+					{{> afQuickField name="seminaraddress"}}
+					{{> afQuickField name="seminarcontactno"}}
+					{{> afQuickField name="seminarinfo"}}
+					<div class="text-center">
+						<button type="submit" class="btn btn-seminar">Submit</button>
+						<button type="reset" class="btn btn-default">Reset</button>
+					</div>
+				{{/autoForm}}	
+			</fieldset>
+			<hr>
+			<br>
+			<br>
+		</div>
+	</div>
+	{{> footer}}
+</template>

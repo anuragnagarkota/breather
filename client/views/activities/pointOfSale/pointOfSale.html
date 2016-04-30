@@ -1,0 +1,26 @@
+<template name="pointOfSale">
+	<div class="container home-container">
+		<div>
+			{{> backtohome activityclass="btn-pointsale"}}
+			<br>
+			<fieldset>
+				<legend><i class="fa fa-street-view fa-2x pointsale-icon"></i> Point of Sale </legend>
+				<!-- {{> quickForm collection="Points" id="insertPoints" type="insert" omitFields="owner"}} -->
+				{{#autoForm collection="Points" id="insertPoint" type="method" meteormethod="submitPoint" validation="submit"}}
+					{{> afQuickField name="name"}}
+					{{> afQuickField name="address"}}
+					{{> afQuickField name="org"}}
+					{{> afQuickField name="form"}}
+					<div class="text-center">
+						<button type="submit" class="btn btn-pointsale">Submit</button>
+						<button type="reset" class="btn btn-default">Reset</button>
+					</div>
+				{{/autoForm}}	
+			</fieldset>
+			<hr>
+			<br>
+			<br>
+		</div>
+	</div>
+	{{>footer}}
+</template>

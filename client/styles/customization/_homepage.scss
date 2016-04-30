@@ -1,0 +1,185 @@
+$small: 480px;
+$medium: 768px;
+$large: 960px;
+
+$navigation-and-footer-bg-color : #111;
+$navigation-height: 10%;
+
+$body-container: 80%;
+
+$footer-height: 10%;
+
+html,body {
+	height: 100%;
+	min-width: 100px;
+	
+	.navigation {
+		height: $navigation-height;
+		background-color: $navigation-and-footer-bg-color;
+		z-index: 12;
+	}
+
+	.home-container {
+		height: $body-container;
+		display: block;
+		.row {
+			height: 100%;
+			min-height: 400px;
+			.activity {
+				display: block;
+				height: 33.33%;
+				@include breakpoint($medium) {
+					height: 50%;
+					font-size: 18px;
+				}
+				padding: 7% 0px;
+				text-align: center;
+				border: 2px solid #fff;
+				border-radius: 5px;
+				color: #eee;
+				position: relative;
+				text-decoration: none;
+				z-index: 2;
+				&:hover, &:visited, &:focus {
+					// text-decoration: none;
+				}
+				i {
+					position: inherit;
+					top: 0%;
+					opacity: .8;
+				}
+				div{
+					margin-top: 7px;
+				}
+			}
+		}
+	}
+
+	.footer {
+		height: $footer-height;
+		min-height: 45px;
+		background-color: $navigation-and-footer-bg-color;
+		color: #eee;
+		position: fixed;
+		bottom: 0px;
+		width:100%;
+		line-height: 400%;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		z-index: 1000;
+	}
+
+}
+
+// The below section corresponds to the homepage theme.
+
+$insertion-base-color: #2C608E;
+$leaflet-base-color: #7E5CA7;
+$pointsale-base-color: #DC8700;
+$schoolvisit-base-color: #C23A00;
+$seminar-base-color: #69003F;
+$tutionclass-base-color: #393144;
+$color: #fff;
+
+
+// ------------ Insertion Colors
+.insertion-color{
+	background-color: $insertion-base-color;
+	color: $color;
+}
+
+.btn-insertion {
+	@include backtohome($insertion-base-color)
+}
+
+.insertion-icon {
+	color: $insertion-base-color;
+}
+
+
+
+// ------------ Leaflet Colors
+.leaflet-color {
+	background-color: $leaflet-base-color;
+	color: $color;
+}
+
+.btn-leaflet {
+	@include backtohome($leaflet-base-color)
+}
+
+.leaflet-icon {
+	color: $leaflet-base-color;
+}
+
+// ------------ Point Sale Colors
+.pointsale-color {
+	background-color: $pointsale-base-color;
+	color: $color;
+}
+
+.btn-pointsale{
+	@include backtohome(lighten($pointsale-base-color,8%));
+}
+
+.pointsale-icon {
+	color: lighten($pointsale-base-color,8%);
+}
+
+.pointsale-panel {
+	@include panel-variant(lighten($pointsale-base-color,8%), $color, lighten($pointsale-base-color,8%), lighten($pointsale-base-color,8%))
+}
+
+// ------------- School Visit
+.schoolvisit-color {
+	 background-color: $schoolvisit-base-color;
+	 color: $color;
+}
+
+.btn-schoolvisit{
+	@include backtohome(lighten($schoolvisit-base-color,5%));
+}
+
+.schoolvisit-icon {
+	color: lighten($schoolvisit-base-color,5%);
+}
+
+.schoolvisit-panel {
+	@include panel-variant(lighten($schoolvisit-base-color,5%), $color, lighten($schoolvisit-base-color,5%), lighten($schoolvisit-base-color,5%))
+}
+
+// -------------- Seminar
+.seminar-color {
+	background-color: $seminar-base-color;
+	color: $color;
+}
+
+.btn-seminar{
+	@include backtohome(lighten($seminar-base-color,8%));
+}
+
+.seminar-icon {
+	color:lighten($seminar-base-color,8%);
+}
+
+.seminar-panel {
+	@include panel-variant(lighten($seminar-base-color,8%), $color, lighten($seminar-base-color,8%), lighten($seminar-base-color,8%))
+}
+
+// --------------- Tution Class
+.tutionclass-color {
+	background-color: $tutionclass-base-color;
+	color: $color;
+}
+
+.btn-tutionclass{
+	@include backtohome(lighten($tutionclass-base-color,11%));
+}
+
+.tutionclass-icon {
+	color: lighten($tutionclass-base-color,11%);
+}
+
+.tutionclass-panel {
+	@include panel-variant(lighten($tutionclass-base-color,11%), $color, lighten($tutionclass-base-color,11%), lighten($tutionclass-base-color,11%))
+}

@@ -1,0 +1,64 @@
+
+// This is to help the dropdpwn shade on a mobile firdt version
+.navbar-nav{
+		background-color: #111;
+		opacity: .9;
+}
+
+.zero-opacity{
+	opacity: 0;
+}
+
+.btn:focus,.btn:active:focus {
+	outline: none;
+}
+
+[data-required] label:after {
+	content: '*';
+	color: red;
+}
+
+a {
+	text-decoration: none;
+	&:hover, &:visited, &:focus {
+		text-decoration: none;
+	}
+}
+
+ul {
+	li {
+		list-style-type: none;
+	}
+}
+
+table a {
+	color: #98FB98;
+	&:hover,&:focus {
+		color: #000;
+	}
+	&:visited {
+		color: #98FB98;
+	}
+}
+
+.border {
+	border-radius: 10px;
+	margin-bottom: 10px;
+	h4 {
+		padding-top: 10px;
+		padding-bottom: 5px;
+		border-bottom: 1px solid #fff;
+	}
+}
+
+.btn-h3-margin {
+	margin-top: 10px;
+}
+
+.container {
+	clear: both;
+}
+
+.margin-top {
+	margin-top: 0px;
+}
